@@ -1,0 +1,34 @@
+server:
+  port: 8099
+
+spring:
+  application:
+    name: batch-example
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: ${PASSWORD:password}
+    username: root
+    url: jdbc:mysql://localhost:3306/spring_batch?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
+  batch:
+    jdbc:
+      initialize-schema: always
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: info
+        type:
+          descriptor:
+            sql:
+              BasicBinder: info
+
+required:
+  age: 18
