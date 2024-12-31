@@ -13,7 +13,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Index;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
-import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
@@ -23,42 +22,42 @@ import java.util.StringJoiner;
 import static org.springframework.format.annotation.DateTimeFormat.ISO.DATE;
 
 @Entity
-@Table(name = "person",
+@Table( name = "person",
         indexes = {
-                @Index(name = "person_idx_id", unique = true, columnList = "id"),
-                @Index(name = "person_idx_identity_card", unique = true, columnList = "identityCard")},
+                @Index( name = "person_idx_id", unique = true, columnList = "id" ),
+                @Index( name = "person_idx_identity_card", unique = true, columnList = "identityCard" ) },
         uniqueConstraints = {
-                @UniqueConstraint(name = "person_id_ctx", columnNames = "id"),
-                @UniqueConstraint(name = "person_identity_card_ctx", columnNames = "identityCard")
+                @UniqueConstraint( name = "person_id_ctx", columnNames = "id" ),
+                @UniqueConstraint( name = "person_identity_card_ctx", columnNames = "identityCard" )
         }
 )
 public class Person implements Serializable {
 
     @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column( name = "id" )
+    @GeneratedValue( strategy = GenerationType.IDENTITY )
     private Integer id;
 
-    @Column(name = "identityCard")
+    @Column( name = "identityCard" )
     private String identityCard;
 
-    @Column(name = "name")
+    @Column( name = "name" )
     private String name;
 
-    @Column(name = "lastName")
+    @Column( name = "lastName" )
     private String lastName;
 
-    @Column(name = "middleName")
+    @Column( name = "middleName" )
     private String middleName;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd", iso = DATE)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    @Column(name = "dob", columnDefinition = "DATE")
-    @JsonDeserialize(using = LocalDateDeserializer.class)
-    @JsonSerialize(using = LocalDateSerializer.class)
+    @DateTimeFormat( pattern = "yyyy-MM-dd", iso = DATE )
+    @JsonFormat( shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd" )
+    @Column( name = "dob", columnDefinition = "DATE" )
+    @JsonDeserialize( using = LocalDateDeserializer.class )
+    @JsonSerialize( using = LocalDateSerializer.class )
     private LocalDate dob;
 
-    @Column(name = "genre")
+    @Column( name = "genre" )
     private Character genre;
 
     public Person() {

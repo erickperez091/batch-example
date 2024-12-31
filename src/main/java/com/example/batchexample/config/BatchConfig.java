@@ -2,6 +2,7 @@ package com.example.batchexample.config;
 
 import com.example.batchexample.entity.Person;
 import com.example.batchexample.entity.PersonDTO;
+import com.example.batchexample.service.PersonService;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.job.builder.JobBuilder;
@@ -33,21 +34,21 @@ public class BatchConfig {
     }
 
     @Bean
-    public ItemProcessor< PersonDTO, Person> processor() {
+    public ItemProcessor< PersonDTO, Person > processor() {
         return new PersonProcessor();
     }
 
     @Bean
-    public ItemWriter< Person > writer() {
-        return new PersonWriter();
+    public ItemWriter< Person > writer( PersonService personService ) {
+        return new PersonWriter( personService );
     }
 
     @Bean
     public Step step( JobRepository jobRepository, PlatformTransactionManager transactionManager,
-                      ItemWriter< Person > writer, ItemProcessor<PersonDTO, Person> processor,
+                      ItemWriter< Person > writer, ItemProcessor< PersonDTO, Person > processor,
                       ItemReader< PersonDTO > reader ) {
         return new StepBuilder( "step1", jobRepository )
-                .<PersonDTO, Person>chunk( 5,  transactionManager)
+                .< PersonDTO, Person >chunk( 5, transactionManager )
                 .reader( reader )
                 .processor( processor )
                 .writer( writer ).build();

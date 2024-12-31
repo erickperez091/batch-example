@@ -8,11 +8,11 @@ import org.springframework.stereotype.Service;
 public class PersonService {
     private final PersonRepository personRepository;
 
-    public PersonService(PersonRepository personRepository) {
+    public PersonService( PersonRepository personRepository ) {
         this.personRepository = personRepository;
     }
 
-    public Person save( Person person) {
-        return this.personRepository.save(person);
+    public Person save( Person person ) {
+        return this.personRepository.save( person );
     }
 }

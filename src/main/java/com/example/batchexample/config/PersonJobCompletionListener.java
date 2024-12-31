@@ -10,8 +10,8 @@ public class PersonJobCompletionListener implements JobExecutionListener {
 
     @Override
     public void afterJob( JobExecution jobExecution ) {
-        if(jobExecution.getStatus() == BatchStatus.COMPLETED) {
-            System.out.println("Job completed");
+        if ( jobExecution.getStatus() == BatchStatus.COMPLETED ) {
+            System.out.println( "Job completed" );
         }
     }
 }
