@@ -19,5 +19,4 @@ public class PersonReader extends FlatFileItemReader< PersonDTO > {
         lineMapper.setFieldSetMapper( new PersonDTOFieldSetMapper() );
         setLineMapper( lineMapper );
     }
-
 }
